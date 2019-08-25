@@ -1,8 +1,8 @@
 # ReTodos
 
 ## What is ReTodos? Does it benefits world in any way?
-Its a pet project to learn ReasonML and Reason React.
-Currently, only benefit it may give to someone is to learn some ReasonML centric concepts which may not be found in docs, for instance:
+It's a pet project to learn ReasonML and Reason React.
+Currently, only benefit it may give to someone is to read code and learn a few ReasonML centric concepts which may not be found in docs, for instance:
 1. Usage of Keyboard Events in Reason React
 2. Usage of `contentEditable` web api with Reason React
 3. Usage of `bs-webapi` to manipulate innerhHTML of an HTML element in Reason React
@@ -11,10 +11,10 @@ Currently, only benefit it may give to someone is to learn some ReasonML centric
 ## What made it worth it?
 1. Usage of `contentEditable` instead of plain `input` field to edit todos was new and interesting, in fact its preferable once you realize the feature set that comes with it
 2. Mutating HTML node via `innerHTML` and `dangerouslySetInnerHTML` with types and all
-3. Pattern matching, its just mindblowing how much simpler it can make conditional flows and how much ReasonML/Ocaml can infer to catch bugs
+3. Pattern matching, its just mind blowing how much simpler it can make conditional flows and how much ReasonML/Ocaml can infer to catch bugs
 4. Usage of strict type checking baked in language which makes state management easier and more error proof
 5. How natural React and Hooks API feels when you write in functional language
-6. How ridiculously-blazing-fast bucklescript is compared to any other transpiler or compiler and yes it would be a disgrace to compare with babel
+6. How ridiculously-blazing-fast bucklescript is when compared with any other transpiler or compiler and yes it would be a disgrace to compare with babel
 
 ## What feature set it support?
 - [x] CRUD operations for todo, duh!
