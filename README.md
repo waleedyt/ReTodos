@@ -16,6 +16,11 @@ Currently, only benefit it may give to someone is to learn some ReasonML centric
 5. How natural React and Hooks API feels when you write in functional language
 6. How ridiculously-blazing-fast bucklescript is compared to any other transpiler or compiler and yes it would be a disgrace to compare with babel
 
+## What featureset it support?
+- [x] CRUD operations for todo, duh!
+- [x] Mark a todo as done
+- [x] Text editing functionality with HTML5 `contentEditable` API, works like Google Keep
+
 ## Todos left for ReTodos :) in order to make it usable, at least for myself:
 - [ ] Sort with drag and drop support`
 - [ ] Store state in local storage
