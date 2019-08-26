@@ -32,3 +32,9 @@ Currently, only benefit it may give to someone is to read code and learn a few R
 1. `yarn install`
 2. `yarn start` to run the bucklescript compiler
 3. `yarn server` to start the dev server to serve compiled `.js` files
+
+Next dev task:
+Use reducer's drag to update state on drag start
+Use reducer's drop to update state on drop
+Add animation on drag and drop
+Optimize whether to drop before or after the target element

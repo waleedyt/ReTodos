@@ -9,5 +9,5 @@ type action =
   | Toggle(int)
   | Update(int, string)
   | Delete(int)
-  | DragStart(int)
-  | DragStop(int);
+  | Drag(int)
+  | Drop(int);

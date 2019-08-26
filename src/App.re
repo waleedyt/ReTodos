@@ -33,7 +33,7 @@ let reducer = (state, action: Types.action) => {
       todos: Array.keep(state.todos, todo => todo.id !== id),
       dragElement: None,
     }
-  | DragStart(id) =>
+  | Drag(id) =>
     Array.reduce(state.todos, {todos: [||], dragElement: None}, (acc, item) =>
       if (item.id === id) {
         {
@@ -44,7 +44,7 @@ let reducer = (state, action: Types.action) => {
         {dragElement: None, todos: acc.todos};
       }
     )
-  | DragStop(id) =>
+  | Drop(id) =>
     Array.reduce(state.todos, {todos: [||], dragElement: None}, (acc, item) =>
       if (item.id === id) {
         {
