@@ -90,6 +90,10 @@ function TodoItem(Props) {
                   text
                 ]));
   };
+  var handleDragStart = function (ev) {
+    console.log(ev);
+    return /* () */0;
+  };
   return React.createElement("div", {
               className: SharedStyles$ReactHooksTemplate.itemContainer(match[0]),
               onClick: (function (param) {
@@ -98,6 +102,10 @@ function TodoItem(Props) {
                               }));
                 })
             }, React.createElement("div", {
+                  className: SharedStyles$ReactHooksTemplate.actionContainer,
+                  draggable: true,
+                  onDragStart: handleDragStart
+                }, Icons$ReactHooksTemplate.getIcon(/* DragHandle */2)), React.createElement("div", {
                   className: SharedStyles$ReactHooksTemplate.actionContainer
                 }, React.createElement("input", {
                       className: checkBox,

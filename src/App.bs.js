@@ -13,14 +13,18 @@ function reducer(state, action) {
   switch (action.tag | 0) {
     case 0 : 
         lastId[0] = lastId[0] + 1 | 0;
-        return /* record */[/* todos */Belt_Array.concat(state[/* todos */0], /* array */[/* record */[
+        return /* record */[
+                /* todos */Belt_Array.concat(state[/* todos */0], /* array */[/* record */[
                         /* id */lastId[0],
                         /* text */action[0],
                         /* isDone */false
-                      ]])];
+                      ]]),
+                /* dragElement */undefined
+              ];
     case 1 : 
         var id = action[0];
-        return /* record */[/* todos */Belt_Array.map(state[/* todos */0], (function (todo) {
+        return /* record */[
+                /* todos */Belt_Array.map(state[/* todos */0], (function (todo) {
                         var match = todo[/* id */0] === id;
                         if (match) {
                           return /* record */[
@@ -31,11 +35,14 @@ function reducer(state, action) {
                         } else {
                           return todo;
                         }
-                      }))];
+                      })),
+                /* dragElement */undefined
+              ];
     case 2 : 
         var text = action[1];
         var id$1 = action[0];
-        return /* record */[/* todos */Belt_Array.map(state[/* todos */0], (function (todo) {
+        return /* record */[
+                /* todos */Belt_Array.map(state[/* todos */0], (function (todo) {
                         var match = todo[/* id */0] === id$1;
                         if (match) {
                           return /* record */[
@@ -46,18 +53,66 @@ function reducer(state, action) {
                         } else {
                           return todo;
                         }
-                      }))];
+                      })),
+                /* dragElement */undefined
+              ];
     case 3 : 
         var id$2 = action[0];
-        return /* record */[/* todos */Belt_Array.keep(state[/* todos */0], (function (todo) {
+        return /* record */[
+                /* todos */Belt_Array.keep(state[/* todos */0], (function (todo) {
                         return todo[/* id */0] !== id$2;
-                      }))];
+                      })),
+                /* dragElement */undefined
+              ];
+    case 4 : 
+        var id$3 = action[0];
+        return Belt_Array.reduce(state[/* todos */0], /* record */[
+                    /* todos : array */[],
+                    /* dragElement */undefined
+                  ], (function (acc, item) {
+                      if (item[/* id */0] === id$3) {
+                        return /* record */[
+                                /* todos */Belt_Array.concat(acc[/* todos */0], /* array */[item]),
+                                /* dragElement */item
+                              ];
+                      } else {
+                        return /* record */[
+                                /* todos */acc[/* todos */0],
+                                /* dragElement */undefined
+                              ];
+                      }
+                    }));
+    case 5 : 
+        var id$4 = action[0];
+        return Belt_Array.reduce(state[/* todos */0], /* record */[
+                    /* todos : array */[],
+                    /* dragElement */undefined
+                  ], (function (acc, item) {
+                      if (item[/* id */0] === id$4) {
+                        var match = state[/* dragElement */1];
+                        return /* record */[
+                                /* todos */match !== undefined ? Belt_Array.concat(acc[/* todos */0], /* array */[
+                                        item,
+                                        match
+                                      ]) : acc[/* todos */0],
+                                /* dragElement */undefined
+                              ];
+                      } else {
+                        return /* record */[
+                                /* todos */acc[/* todos */0],
+                                /* dragElement */undefined
+                              ];
+                      }
+                    }));
     
   }
 }
 
 function App(Props) {
-  var match = React.useReducer(reducer, /* record */[/* todos : array */[]]);
+  var match = React.useReducer(reducer, /* record */[
+        /* todos : array */[],
+        /* dragElement */undefined
+      ]);
   var dispatch = match[1];
   return React.createElement("div", {
               className: AppStyles$ReactHooksTemplate.appContainer

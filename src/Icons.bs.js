@@ -4,30 +4,62 @@
 var React = require("react");
 
 function getIcon(icon) {
-  if (icon) {
-    return React.createElement("svg", {
-                height: "18",
-                width: "18",
-                viewBox: "0 0 24 24",
-                xmlns: "http://www.w3.org/2000/svg"
-              }, React.createElement("path", {
-                    d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                  }), React.createElement("path", {
-                    d: "M0 0h24v24H0z",
-                    fill: "none"
-                  }));
-  } else {
-    return React.createElement("svg", {
-                height: "18",
-                width: "18",
-                viewBox: "0 0 24 24",
-                xmlns: "http://www.w3.org/2000/svg"
-              }, React.createElement("path", {
-                    d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-                  }), React.createElement("path", {
-                    d: "M0 0h24v24H0z",
-                    fill: "none"
-                  }));
+  switch (icon) {
+    case 0 : 
+        return React.createElement("svg", {
+                    height: "18",
+                    width: "18",
+                    viewBox: "0 0 24 24",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }, React.createElement("path", {
+                        d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                      }), React.createElement("path", {
+                        d: "M0 0h24v24H0z",
+                        fill: "none"
+                      }));
+    case 1 : 
+        return React.createElement("svg", {
+                    height: "18",
+                    width: "18",
+                    viewBox: "0 0 24 24",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }, React.createElement("path", {
+                        d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                      }), React.createElement("path", {
+                        d: "M0 0h24v24H0z",
+                        fill: "none"
+                      }));
+    case 2 : 
+        return React.createElement("svg", {
+                    height: "16px",
+                    width: "10px",
+                    version: "1.1",
+                    viewBox: "0 0 10 16",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }, React.createElement("g", {
+                        id: "Icons",
+                        fill: "none",
+                        fillRule: "evenodd",
+                        stroke: "none",
+                        strokeWidth: "1"
+                      }, React.createElement("g", {
+                            id: "Outlined",
+                            transform: "translate(-617.000000, -246.000000)"
+                          }, React.createElement("g", {
+                                id: "Action",
+                                transform: "translate(100.000000, 100.000000)"
+                              }, React.createElement("g", {
+                                    id: "Outlined-/-Action-/-drag_indicator",
+                                    transform: "translate(510.000000, 142.000000)"
+                                  }, React.createElement("g", undefined, React.createElement("polygon", {
+                                            id: "Path",
+                                            points: "0 0 24 0 24 24 0 24"
+                                          }), React.createElement("path", {
+                                            id: "Icon-Color",
+                                            d: "M11,18 C11,19.1 10.1,20 9,20 C7.9,20 7,19.1 7,18 C7,16.9 7.9,16 9,16 C10.1,16 11,16.9 11,18 Z M9,10 C7.9,10 7,10.9 7,12 C7,13.1 7.9,14 9,14 C10.1,14 11,13.1 11,12 C11,10.9 10.1,10 9,10 Z M9,4 C7.9,4 7,4.9 7,6 C7,7.1 7.9,8 9,8 C10.1,8 11,7.1 11,6 C11,4.9 10.1,4 9,4 Z M15,8 C16.1,8 17,7.1 17,6 C17,4.9 16.1,4 15,4 C13.9,4 13,4.9 13,6 C13,7.1 13.9,8 15,8 Z M15,10 C13.9,10 13,10.9 13,12 C13,13.1 13.9,14 15,14 C16.1,14 17,13.1 17,12 C17,10.9 16.1,10 15,10 Z M15,16 C13.9,16 13,16.9 13,18 C13,19.1 13.9,20 15,20 C16.1,20 17,19.1 17,18 C17,16.9 16.1,16 15,16 Z",
+                                            fill: "#1D1D1D"
+                                          })))))));
+    
   }
 }
 

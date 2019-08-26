@@ -32,10 +32,17 @@ module Styles = {
 let make = (~todo: Types.item, ~dispatch: Types.action => unit) => {
   let (isActive, setActive) = React.useState(() => false);
   let onSubmitText = text => dispatch(Update(todo.id, text));
+  let handleDragStart = ev => Js.log(ev);
 
   <div
     className={SharedStyles.itemContainer(isActive)}
     onClick={_ => setActive(_ => false)}>
+    <div
+      className=SharedStyles.actionContainer
+      draggable=true
+      onDragStart=handleDragStart>
+      {Icons.getIcon(DragHandle)}
+    </div>
     <div className=SharedStyles.actionContainer>
       <input
         type_="checkbox"

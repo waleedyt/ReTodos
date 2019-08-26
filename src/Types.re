@@ -8,4 +8,6 @@ type action =
   | NewTodo(string)
   | Toggle(int)
   | Update(int, string)
-  | Delete(int);
+  | Delete(int)
+  | DragStart(int)
+  | DragStop(int);
