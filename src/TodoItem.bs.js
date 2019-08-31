@@ -55,7 +55,10 @@ var delButton = Css.style(/* :: */[
                       Css.opacity(1.0),
                       /* [] */0
                     ]),
-                /* [] */0
+                /* :: */[
+                  Css.backgroundColor(Css.white),
+                  /* [] */0
+                ]
               ]
             ]
           ]
@@ -84,6 +87,10 @@ function TodoItem(Props) {
           return false;
         }));
   var setActive = match[1];
+  var match$1 = React.useState((function () {
+          return false;
+        }));
+  var setDragHandle = match$1[1];
   var onSubmitText = function (text) {
     return Curry._1(dispatch, /* Update */Block.__(2, [
                   todo[/* id */0],
@@ -110,10 +117,20 @@ function TodoItem(Props) {
               onDragStart: handleDrag,
               onDrop: (function (param) {
                   return Curry._1(dispatch, /* Drop */Block.__(5, [todo[/* id */0]]));
+                }),
+              onMouseEnter: (function (param) {
+                  return Curry._1(setDragHandle, (function (param) {
+                                return true;
+                              }));
+                }),
+              onMouseLeave: (function (param) {
+                  return Curry._1(setDragHandle, (function (param) {
+                                return false;
+                              }));
                 })
             }, React.createElement("div", {
                   className: SharedStyles$ReactHooksTemplate.actionContainer
-                }, Icons$ReactHooksTemplate.getIcon(/* DragHandle */2)), React.createElement("div", {
+                }, match$1[0] ? Icons$ReactHooksTemplate.getIcon(/* DragHandle */2) : ""), React.createElement("div", {
                   className: SharedStyles$ReactHooksTemplate.actionContainer
                 }, React.createElement("input", {
                       className: checkBox,

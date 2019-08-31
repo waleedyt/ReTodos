@@ -12,8 +12,6 @@ let actionContainer =
 let itemContainer = isActive => {
   let baseStyle =
     style([
-      width(auto),
-      minHeight(rem(1.85)),
       padding2(~v=rem(0.25), ~h=rem(0.25)),
       display(`flex),
       alignItems(center),
