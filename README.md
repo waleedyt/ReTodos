@@ -15,7 +15,7 @@ Currently, only benefit it may give to someone is to read code and learn a few R
 8. How natural React and Hooks API feels when you write them in a functional language
 9. How ridiculously-blazing-fast bucklescript is when compared with any other transpiler or compiler and yes it would be a disgrace to compare with babel
 
-## What feature set it supports?
+## What features it supports?
 - [x] CRUD operations for todo, duh!
 - [x] Mark a todo as done
 - [x] Text editing functionality with HTML5 `contentEditable` API, works like Google Keep
