@@ -90,21 +90,29 @@ function TodoItem(Props) {
                   text
                 ]));
   };
-  var handleDragStart = function (ev) {
-    console.log(ev);
-    return /* () */0;
+  var handleDrag = function (e) {
+    e.nativeEvent.dataTransfer.setData("text/html", todo);
+    return Curry._1(dispatch, /* Drag */Block.__(4, [todo[/* id */0]]));
   };
   return React.createElement("div", {
+              key: String(todo[/* id */0]) + "lol",
               className: SharedStyles$ReactHooksTemplate.itemContainer(match[0]),
+              draggable: true,
               onClick: (function (param) {
                   return Curry._1(setActive, (function (param) {
                                 return false;
                               }));
+                }),
+              onDragOver: (function (e) {
+                  e.preventDefault();
+                  return /* () */0;
+                }),
+              onDragStart: handleDrag,
+              onDrop: (function (param) {
+                  return Curry._1(dispatch, /* Drop */Block.__(5, [todo[/* id */0]]));
                 })
             }, React.createElement("div", {
-                  className: SharedStyles$ReactHooksTemplate.actionContainer,
-                  draggable: true,
-                  onDragStart: handleDragStart
+                  className: SharedStyles$ReactHooksTemplate.actionContainer
                 }, Icons$ReactHooksTemplate.getIcon(/* DragHandle */2)), React.createElement("div", {
                   className: SharedStyles$ReactHooksTemplate.actionContainer
                 }, React.createElement("input", {

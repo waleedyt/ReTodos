@@ -32,15 +32,25 @@ module Styles = {
 let make = (~todo: Types.item, ~dispatch: Types.action => unit) => {
   let (isActive, setActive) = React.useState(() => false);
   let onSubmitText = text => dispatch(Update(todo.id, text));
-  let handleDragStart = ev => Js.log(ev);
+  let handleDrag = e => {
+    ignore(
+      ReactEvent.Synthetic.nativeEvent(e)##dataTransfer##setData(
+        "text/html",
+        todo,
+      ),
+    );
+    dispatch(Drag(todo.id));
+  };
 
   <div
     className={SharedStyles.itemContainer(isActive)}
-    onClick={_ => setActive(_ => false)}>
-    <div
-      className=SharedStyles.actionContainer
-      draggable=true
-      onDragStart=handleDragStart>
+    key={string_of_int(todo.id) ++ "lol"}
+    onClick={_ => setActive(_ => false)}
+    draggable=true
+    onDragOver={e => ReactEvent.Mouse.preventDefault(e)}
+    onDragStart=handleDrag
+    onDrop={_ => dispatch(Drop(todo.id))}>
+    <div className=SharedStyles.actionContainer>
       {Icons.getIcon(DragHandle)}
     </div>
     <div className=SharedStyles.actionContainer>

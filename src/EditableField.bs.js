@@ -110,6 +110,10 @@ function EditableField(Props) {
                   onClick: (function (param) {
                       return Curry._1(onFieldClick, /* () */0);
                     }),
+                  onDrop: (function (e) {
+                      e.preventDefault();
+                      return /* () */0;
+                    }),
                   dangerouslySetInnerHTML: {
                     __html: text$1
                   }

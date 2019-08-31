@@ -33,32 +33,77 @@ let reducer = (state, action: Types.action) => {
       todos: Array.keep(state.todos, todo => todo.id !== id),
       dragElement: None,
     }
-  | Drag(id) =>
-    Array.reduce(state.todos, {todos: [||], dragElement: None}, (acc, item) =>
-      if (item.id === id) {
-        {
-          dragElement: Some(item),
-          todos: Array.concat(acc.todos, [|item|]),
-        };
-      } else {
-        {dragElement: None, todos: acc.todos};
-      }
-    )
-  | Drop(id) =>
-    Array.reduce(state.todos, {todos: [||], dragElement: None}, (acc, item) =>
-      if (item.id === id) {
-        {
-          dragElement: None,
-          todos:
-            switch (state.dragElement) {
-            | None => acc.todos
-            | Some(dItem) => Array.concat(acc.todos, [|item, dItem|])
-            },
-        };
-      } else {
-        {dragElement: None, todos: acc.todos};
-      }
-    )
+  | Drag(id) => {
+      todos: state.todos,
+      dragElement: Array.keep(state.todos, todo => todo.id === id)[0],
+    }
+  | Drop(id) => {
+      todos:
+        switch (state.dragElement) {
+        | None => state.todos
+        | Some(dragElement) =>
+          let dragIndex =
+            switch (
+              Array.getIndexBy(state.todos, todo => todo.id === dragElement.id)
+            ) {
+            | None => 0
+            | Some(index) => index
+            };
+
+          let dropIndex =
+            switch (Array.getIndexBy(state.todos, todo => todo.id === id)) {
+            | None => Array.length(state.todos)
+            | Some(index) => index
+            };
+
+          if (dragIndex < dropIndex) {
+            let beforeDrag =
+              Array.slice(state.todos, ~offset=0, ~len=dragIndex);
+            let dragToDrop =
+              Array.slice(
+                state.todos,
+                ~offset=dragIndex + 1,
+                ~len=dropIndex - dragIndex,
+              );
+            let dropToEnd =
+              Array.slice(
+                state.todos,
+                ~offset=dropIndex + 1,
+                ~len=Array.length(state.todos) - dropIndex,
+              );
+
+            Array.concatMany([|
+              beforeDrag,
+              dragToDrop,
+              [|dragElement|],
+              dropToEnd,
+            |]);
+          } else {
+            let beforeDrop =
+              Array.slice(state.todos, ~offset=0, ~len=dropIndex);
+            let dropToDrag =
+              Array.slice(
+                state.todos,
+                ~offset=dropIndex,
+                ~len=dragIndex - dropIndex,
+              );
+            let dragToEnd =
+              Array.slice(
+                state.todos,
+                ~offset=dragIndex + 1,
+                ~len=Array.length(state.todos) - (dragIndex + 1),
+              );
+
+            Array.concatMany([|
+              beforeDrop,
+              [|dragElement|],
+              dropToDrag,
+              dragToEnd,
+            |]);
+          };
+        },
+      dragElement: None,
+    }
   };
 };
 
@@ -66,7 +111,6 @@ let reducer = (state, action: Types.action) => {
 let make = () => {
   let ({todos}: state, dispatch) =
     React.useReducer(reducer, {todos: [||], dragElement: None});
-
   <div className=AppStyles.appContainer>
     <h1 className=AppStyles.heading> {React.string("TODO List")} </h1>
     {ReasonReact.array(

@@ -20,9 +20,8 @@ Currently, only benefit it may give to someone is to read code and learn a few R
 - [x] CRUD operations for todo, duh!
 - [x] Mark a todo as done
 - [x] Text editing functionality with HTML5 `contentEditable` API, works like Google Keep
-
+- [x] Drag and Drop support to sort
 ## Todos left for ReTodos :) in order to make it usable, at least for myself:
-- [ ] Sort with drag and drop support`
 - [ ] Store state in local storage
 - [ ] Support login via Google
 - [ ] Sync state with google sheets
@@ -33,8 +32,6 @@ Currently, only benefit it may give to someone is to read code and learn a few R
 2. `yarn start` to run the bucklescript compiler
 3. `yarn server` to start the dev server to serve compiled `.js` files
 
-Next dev task:
-Use reducer's drag to update state on drag start
-Use reducer's drop to update state on drop
-Add animation on drag and drop
+Next dev tasks:
+Show affect on being dragged item
 Optimize whether to drop before or after the target element

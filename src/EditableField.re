@@ -53,6 +53,7 @@ let make = (~text="", ~onSubmit, ~isDone, ~onFieldClick=() => ()) => {
       contentEditable=true
       dangerouslySetInnerHTML={"__html": text}
       ref={ReactDOMRe.Ref.domRef(divRef)}
+      onDrop={e => ReactEvent.Mouse.preventDefault(e)}
       className={Styles.text(isDone)}
       onClick={_ => onFieldClick()}
       onBlur={e =>

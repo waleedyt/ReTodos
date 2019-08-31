@@ -66,44 +66,54 @@ function reducer(state, action) {
               ];
     case 4 : 
         var id$3 = action[0];
-        return Belt_Array.reduce(state[/* todos */0], /* record */[
-                    /* todos : array */[],
-                    /* dragElement */undefined
-                  ], (function (acc, item) {
-                      if (item[/* id */0] === id$3) {
-                        return /* record */[
-                                /* todos */Belt_Array.concat(acc[/* todos */0], /* array */[item]),
-                                /* dragElement */item
-                              ];
-                      } else {
-                        return /* record */[
-                                /* todos */acc[/* todos */0],
-                                /* dragElement */undefined
-                              ];
-                      }
-                    }));
+        return /* record */[
+                /* todos */state[/* todos */0],
+                /* dragElement */Belt_Array.get(Belt_Array.keep(state[/* todos */0], (function (todo) {
+                            return todo[/* id */0] === id$3;
+                          })), 0)
+              ];
     case 5 : 
         var id$4 = action[0];
-        return Belt_Array.reduce(state[/* todos */0], /* record */[
-                    /* todos : array */[],
-                    /* dragElement */undefined
-                  ], (function (acc, item) {
-                      if (item[/* id */0] === id$4) {
-                        var match = state[/* dragElement */1];
-                        return /* record */[
-                                /* todos */match !== undefined ? Belt_Array.concat(acc[/* todos */0], /* array */[
-                                        item,
-                                        match
-                                      ]) : acc[/* todos */0],
-                                /* dragElement */undefined
-                              ];
-                      } else {
-                        return /* record */[
-                                /* todos */acc[/* todos */0],
-                                /* dragElement */undefined
-                              ];
-                      }
-                    }));
+        var match = state[/* dragElement */1];
+        var tmp;
+        if (match !== undefined) {
+          var dragElement = match;
+          var match$1 = Belt_Array.getIndexBy(state[/* todos */0], (function (todo) {
+                  return todo[/* id */0] === dragElement[/* id */0];
+                }));
+          var dragIndex = match$1 !== undefined ? match$1 : 0;
+          var match$2 = Belt_Array.getIndexBy(state[/* todos */0], (function (todo) {
+                  return todo[/* id */0] === id$4;
+                }));
+          var dropIndex = match$2 !== undefined ? match$2 : state[/* todos */0].length;
+          if (dragIndex < dropIndex) {
+            var beforeDrag = Belt_Array.slice(state[/* todos */0], 0, dragIndex);
+            var dragToDrop = Belt_Array.slice(state[/* todos */0], dragIndex + 1 | 0, dropIndex - dragIndex | 0);
+            var dropToEnd = Belt_Array.slice(state[/* todos */0], dropIndex + 1 | 0, state[/* todos */0].length - dropIndex | 0);
+            tmp = Belt_Array.concatMany(/* array */[
+                  beforeDrag,
+                  dragToDrop,
+                  /* array */[dragElement],
+                  dropToEnd
+                ]);
+          } else {
+            var beforeDrop = Belt_Array.slice(state[/* todos */0], 0, dropIndex);
+            var dropToDrag = Belt_Array.slice(state[/* todos */0], dropIndex, dragIndex - dropIndex | 0);
+            var dragToEnd = Belt_Array.slice(state[/* todos */0], dragIndex + 1 | 0, state[/* todos */0].length - (dragIndex + 1 | 0) | 0);
+            tmp = Belt_Array.concatMany(/* array */[
+                  beforeDrop,
+                  /* array */[dragElement],
+                  dropToDrag,
+                  dragToEnd
+                ]);
+          }
+        } else {
+          tmp = state[/* todos */0];
+        }
+        return /* record */[
+                /* todos */tmp,
+                /* dragElement */undefined
+              ];
     
   }
 }
