@@ -12,10 +12,13 @@ var EditableField$ReactHooksTemplate = require("./EditableField.bs.js");
 var newLabel = Css.style(/* :: */[
       Css.position(Css.absolute),
       /* :: */[
-        Css.left(Css.px(52)),
+        Css.left(Css.px(80)),
         /* :: */[
           Css.color(Css.grey),
-          /* [] */0
+          /* :: */[
+            Css.pointerEvents(Css.none),
+            /* [] */0
+          ]
         ]
       ]
     ]);
@@ -47,13 +50,15 @@ function AddTodo(Props) {
               className: SharedStyles$ReactHooksTemplate.itemContainer(isLabelActive)
             }, React.createElement("div", {
                   className: SharedStyles$ReactHooksTemplate.actionContainer
-                }, Icons$ReactHooksTemplate.getIcon(/* Add */0)), React.createElement(EditableField$ReactHooksTemplate.make, {
+                }), React.createElement("div", {
+                  className: SharedStyles$ReactHooksTemplate.actionContainer
+                }, Icons$ReactHooksTemplate.getIcon(/* Add */0)), isLabelActive ? React.createElement("div", {
+                    className: newLabel
+                  }, "New Item") : null, React.createElement(EditableField$ReactHooksTemplate.make, {
                   onSubmit: onSubmit,
                   isDone: false,
                   onFieldClick: onFieldClick
-                }), isLabelActive ? React.createElement("div", {
-                    className: newLabel
-                  }, "New Item") : null);
+                }));
 }
 
 var make = AddTodo;

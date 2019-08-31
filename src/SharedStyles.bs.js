@@ -25,24 +25,18 @@ var actionContainer = Css.style(/* :: */[
 
 function itemContainer(isActive) {
   var baseStyle = Css.style(/* :: */[
-        Css.width(Css.auto),
+        Css.padding2(Css.rem(0.25), Css.rem(0.25)),
         /* :: */[
-          Css.minHeight(Css.rem(1.85)),
+          Css.display(/* flex */-1010954439),
           /* :: */[
-            Css.padding2(Css.rem(0.25), Css.rem(0.25)),
+            Css.alignItems(Css.center),
             /* :: */[
-              Css.display(/* flex */-1010954439),
+              Css.cursor(Css.text),
               /* :: */[
-                Css.alignItems(Css.center),
+                Css.border(Css.px(0), Css.solid, Css.lightgray),
                 /* :: */[
-                  Css.cursor(Css.text),
-                  /* :: */[
-                    Css.border(Css.px(0), Css.solid, Css.lightgray),
-                    /* :: */[
-                      Css.position(Css.relative),
-                      /* [] */0
-                    ]
-                  ]
+                  Css.position(Css.relative),
+                  /* [] */0
                 ]
               ]
             ]

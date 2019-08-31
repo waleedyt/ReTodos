@@ -1,6 +1,12 @@
 module Styles = {
   open Css;
-  let newLabel = style([position(absolute), left(px(52)), color(grey)]);
+  let newLabel =
+    style([
+      position(absolute),
+      left(px(80)),
+      color(grey),
+      pointerEvents(none),
+    ]);
 };
 
 [@react.component]
@@ -18,10 +24,11 @@ let make = (~dispatch: Types.action => unit) => {
     };
 
   <div className={SharedStyles.itemContainer(isLabelActive)}>
+    <div className=SharedStyles.actionContainer />
     <div className=SharedStyles.actionContainer> {Icons.getIcon(Add)} </div>
-    <EditableField onSubmit isDone=false onFieldClick />
     {isLabelActive
        ? <div className=Styles.newLabel> {React.string("New Item")} </div>
        : React.null}
+    <EditableField onSubmit isDone=false onFieldClick />
   </div>;
 };

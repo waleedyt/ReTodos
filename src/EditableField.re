@@ -4,14 +4,13 @@ module Styles = {
   let text = isDone => {
     let baseStyle =
       style([
-        flexGrow(1.0),
         margin(zero),
         padding2(~v=rem(0.25), ~h=rem(0.75)),
         focus([outline(px(0), none, white)]),
         width(`percent(100.0)),
         whiteSpace(`preWrap),
         wordWrap(`breakWord),
-        minHeight(rem(1.5)),
+        minHeight(rem(1.3)),
       ]);
     switch (isDone) {
     | false => baseStyle
@@ -53,6 +52,7 @@ let make = (~text="", ~onSubmit, ~isDone, ~onFieldClick=() => ()) => {
       contentEditable=true
       dangerouslySetInnerHTML={"__html": text}
       ref={ReactDOMRe.Ref.domRef(divRef)}
+      onDrop={e => ReactEvent.Mouse.preventDefault(e)}
       className={Styles.text(isDone)}
       onClick={_ => onFieldClick()}
       onBlur={e =>

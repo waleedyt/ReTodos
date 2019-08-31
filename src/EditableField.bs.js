@@ -10,29 +10,26 @@ var Webapi__Dom__Element = require("bs-webapi/src/Webapi/Webapi__Dom/Webapi__Dom
 
 function text(isDone) {
   var baseStyle = Css.style(/* :: */[
-        Css.flexGrow(1.0),
+        Css.margin(Css.zero),
         /* :: */[
-          Css.margin(Css.zero),
+          Css.padding2(Css.rem(0.25), Css.rem(0.75)),
           /* :: */[
-            Css.padding2(Css.rem(0.25), Css.rem(0.75)),
+            Css.focus(/* :: */[
+                  Css.outline(Css.px(0), Css.none, Css.white),
+                  /* [] */0
+                ]),
             /* :: */[
-              Css.focus(/* :: */[
-                    Css.outline(Css.px(0), Css.none, Css.white),
-                    /* [] */0
+              Css.width(/* `percent */[
+                    -119887163,
+                    100.0
                   ]),
               /* :: */[
-                Css.width(/* `percent */[
-                      -119887163,
-                      100.0
-                    ]),
+                Css.whiteSpace(/* preWrap */660870029),
                 /* :: */[
-                  Css.whiteSpace(/* preWrap */660870029),
+                  Css.wordWrap(/* breakWord */1059921449),
                   /* :: */[
-                    Css.wordWrap(/* breakWord */1059921449),
-                    /* :: */[
-                      Css.minHeight(Css.rem(1.5)),
-                      /* [] */0
-                    ]
+                    Css.minHeight(Css.rem(1.3)),
+                    /* [] */0
                   ]
                 ]
               ]
@@ -109,6 +106,10 @@ function EditableField(Props) {
                     }),
                   onClick: (function (param) {
                       return Curry._1(onFieldClick, /* () */0);
+                    }),
+                  onDrop: (function (e) {
+                      e.preventDefault();
+                      return /* () */0;
                     }),
                   dangerouslySetInnerHTML: {
                     __html: text$1
